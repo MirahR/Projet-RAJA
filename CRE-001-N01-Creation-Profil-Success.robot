@@ -6,15 +6,7 @@ Library    XML
 Resource    TestConnexionChampsManquants.robot
 Resource    TestConnexionPassent.robot
 Library    FakerLibrary    locale=fr_FR
-
-*** Variables ***
-${mail1}    FakerLibrary.Words
-
-*** Test Cases ***
-Page création d'un compte
-    OpenRaja
-    Remplissage 1ere page
-    Remplissage 2eme page
+Library    Dialogs
 
 
 *** Keywords ***
@@ -33,8 +25,6 @@ Remplissage 1ere page
     ${nom}    FakerLibrary.Last Name
     ${tel}    FakerLibrary.Phone Number
     
-
-
     #Remplissage des champs "Information utilisateur"
     Click Element    //*[@id="userInfoForm"]/div/fieldset/div[2]/label/span
     Input Text    //*[@id="IdentifiersLogin"]    ${mail}
@@ -47,21 +37,30 @@ Remplissage 1ere page
     Scroll to Element    //*[@id="nextStepBtn"]
     Click Button    //*[@id="nextStepBtn"]
 
-
 Remplissage 2eme page
     #Données utilisateur   
     ${n_voie}    FakerLibrary.Address
     ${n_batiment}    FakerLibrary.Building Number
     #${batiment}    Set Variable    Bâtiment ${n_batiment}
-    ${code_postal}    FakerLibrary.Postalcode
+    ${code_postal}    FakerLibrary.Postcode
     ${ville}    FakerLibrary.City
     ${pays}    Evaluate    random.randint(2, 3)    random
 
     #Remplissage des champs "Adresse utilisateur"
-    Input Text    //*[@id="CompaniesPostCodeSearch"]    ${n_voie}
+    Input Text    //*[@id="CompaniesAddress"]    ${n_voie}
     Input Text    //*[@id="CompaniesBP"]    ${n_batiment}
+    Input Text    //*[@id="CompaniesPostCode"]    ${code_postal}
+    Input Text    //*[@id="CompaniesCity"]    ${ville}
+    Execute Manual Step    cliquer sur "Je ne suis pas un Robot"
+    Click Button    //*[@id="submitAllForm"]
+    ${adresse_verif}    Run Keyword And Return Status    Element Should Be Visible    //*[@id="createUserSubmitWithDQE"]
+    IF    ${adresse_verif}    Click Button    //*[@id="createUserSubmitWithDQE"]
+    Sleep    2
 
-
+Vérification cas passant
+    Page Should Contain Element  //*[@id="dropdown-block"]
+    Sleep    5
+    Close Browser
 
 Scroll to Element
     [Arguments]    ${locator}
