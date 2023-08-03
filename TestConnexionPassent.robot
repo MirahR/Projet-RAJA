@@ -5,15 +5,12 @@ Library    XML
 
 *** Variables ***
 
-*** Test Case ***
-Connexion Passente
-    OpenRaja
-    ConecteAsUser
 
 
 *** KeyWord ***
 OpenRaja
     Open Browser  https://www.raja.fr  chrome
+    Maximize Browser Window
     Click Button  xpath=/html/body/div[4]/div[2]/button
 
 ConecteAsUser
