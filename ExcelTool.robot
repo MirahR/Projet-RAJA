@@ -6,10 +6,9 @@ Library  XML
 *** Variables ***
 ${excelFileName}  RajaJDD__300__0.xlsx
 
-*** Test Case ***
-CreationWrongFormat
-    SaveNewConnexionData  toto  tata  tutu  titi
-    #write new user to excel file
+#*** Test Case ***
+#CreationWrongFormat
+#    SaveNewConnexionData  toto  tata  tutu@tutu.tutu  Titi1234
     
 
 
@@ -44,29 +43,11 @@ SaveNewConnexionData
   Save Excel Document  ${excelFileName}
   Close Current Excel Document
 
-write new user to excel file
-    ${row}=    Set Variable    1
-    ${row}    Convert To Integer    ${row}
-    Open Excel Document    ${excelFileName}    1
-    ${cell_login}    Set Variable    NULL
-    WHILE    "${cell_login}" != "None"
-        ${cell_login}    Read Excel Cell    ${row}    1
-        ${row}    Evaluate    ${row}+1
-    END
-    ${row}    Evaluate    ${row}-1
-    Write Excel Cell    ${row}    1    toto
-    Write Excel Cell    ${row}    2    tutu
-    Write Excel Cell    ${row}    3    tata
-    Write Excel Cell    ${row}    4    titi
-    Save Excel Document    ${excelFileName}
-    Close All Excel Documents
-
-
 GetLoginPassword
 
   Open Excel Document  ${excelFileName}  excelfile
   
-  ${mail}      Read Excel Cell  1  3  connexion
-  ${password}  Read Excel Cell  1  4  connexion
+  ${mail}      Read Excel Cell  3  3  connexion
+  ${password}  Read Excel Cell  3  4  connexion
   Close Current Excel Document
   [return]  ${string}
