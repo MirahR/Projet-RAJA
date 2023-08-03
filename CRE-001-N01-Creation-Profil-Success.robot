@@ -14,11 +14,12 @@ ${mail1}    FakerLibrary.Words
 Page création d'un compte
     OpenRaja
     Remplissage 1ere page
-    Remplissage 2eme page
+    #Remplissage 2eme page
 
 
 *** Keywords ***
 Remplissage 1ere page
+
     # Ouvrir page "créer un compte"
     Click Button    //*[@id="dropdown-account"]/button
     Click Button    //*[@id="redirectCreateAccount"]
@@ -31,6 +32,7 @@ Remplissage 1ere page
     ${prenom}    FakerLibrary.First Name
     ${nom}    FakerLibrary.Last Name
     ${tel}    FakerLibrary.Phone Number
+    
 
 
     #Remplissage des champs "Information utilisateur"
@@ -42,7 +44,9 @@ Remplissage 1ere page
     Input Text    //*[@id="InfoFirstname"]    ${prenom}
     Input Text    //*[@id="InfoLastname"]    ${nom}
     Input Text    //*[@id="directPhone"]    ${tel}
+    Scroll to Element    //*[@id="nextStepBtn"]
     Click Button    //*[@id="nextStepBtn"]
+
 
 Remplissage 2eme page
     #Données utilisateur   
@@ -58,5 +62,12 @@ Remplissage 2eme page
     Input Text    //*[@id="CompaniesBP"]    ${n_batiment}
 
 
+
+Scroll to Element
+    [Arguments]    ${locator}
+    ${horiz}    Get Horizontal Position    ${locator}
+    ${vert}    Get Vertical Position    ${locator}
+    Execute Javascript    window.scrollTo(${horiz}, ${vert})
+    Sleep    2
 
 
