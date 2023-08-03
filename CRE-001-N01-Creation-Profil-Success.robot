@@ -14,7 +14,7 @@ ${mail1}    FakerLibrary.Words
 Page création d'un compte
     OpenRaja
     Remplissage 1ere page
-    #Remplissage 2eme page
+    Remplissage 2eme page
 
 
 *** Keywords ***
