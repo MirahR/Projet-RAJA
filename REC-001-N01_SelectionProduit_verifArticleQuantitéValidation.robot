@@ -1,13 +1,13 @@
 *** Settings ***
-Library    OperatingSystem
-Library    Collections
-Library    SeleniumLibrary
-Library    XML
-
-Resource    TestConnexionPassent.robot
-Resource    CRE-001-N01-Creation-Profil-Success.robot
-Library     FakerLibrary    locale=fr_FR
-Test Setup    OpenRaja
+Library   OperatingSystem
+Library   Collections
+Library   SeleniumLibrary
+Library   XML
+Resource  ExcelTool.robot
+Resource  TestConnexionPassent.robot
+Resource  CRE-001-N01-Creation-Profil-Success.robot
+Library    FakerLibrary    locale=fr_FR
+#Test Setup    OpenRaja
 
 
 
@@ -22,26 +22,6 @@ ${prixValide}     58,30
 
 @{Ruban}    471BLA    Ruban vinyle de marquage blanc 3M 50 mm x 33 m    58,30
 
-
-
-*** Test Cases ***
-test de validation de panier
-   VerificationProduit    ${nomProduitValide}    ${prixValide}
-   Sleep   1
-   Scroll to Element    //*[@id="continuer-achat"]
-   Click Element    //*[@id="continuer-achat"]
-   
-   VerificationProduit    ${nomProduitValide}    ${prixValide}
-   Sleep   1
-   Scroll to Element    //*[@id="continuer-achat"]
-   Click Element    //*[@id="continuer-achat"]
-
-   Close All Browsers
-
-    #Input Text     //*[@id="algolia-loader"]    471BLA
-    #//*[@id="searchAlgolia"]/div[1]/div[1]/div[3]/div[2]/div/article/a[2]/span[2]/span
-    #//*[@id="searchAlgolia"]/div[1]/div[1]/div[3]/div[2]/div/article/a[2]/span[2]/text()[2]
-
 *** KeyWord ***
 Test
     Click Element      //*[@id="algolia-loader"]
@@ -54,20 +34,31 @@ Test
    # Click Element    //*[@id="customize-thumbnails"]/div[2]
     
 VerificationProduit
-    Test
-    [Arguments]   ${refProduitValide}    ${prixValide} 
-    ${nomProduit}    Get Text    //*[@id="searchAlgolia"]/div[1]/div[1]/div[3]/div[2]/div/article/a[2]
-    Log    ${nomProduit}
-    Should Contain     ${nomProduit}    ${nomProduitValide} 
-    ${prix}    Get Text    //*[@id="searchAlgolia"]/div[1]/div[1]/div[3]/div[2]/div/article/a[4]/span/span[1]/span[2]/span
-    Log    ${prix}
-    Should Contain     ${prix}   ${prixValide} 
-    Click Element    //*[@id="searchAlgolia"]/div[1]/div[1]/div[3]/div[2]/div/article/a[2]/img
-    
-   
-    Input Text    //*[@id="articleQuantity"]    0
-    Input Text    //*[@id="articleQuantity"]    10
+    [Arguments]  ${id}
 
+    ${data}=  GetArticleNameAndPrice    ${id}
+    ${nomProduitValide}=  Set Variable  ${data}[0]
+    ${prixValide} =  Set Variable  ${data}[1]
+
+    Sleep    1
+    Click Element    //*[@id="searchAlgolia"]/div[1]/div[1]/div[3]/div[3]/div/article/a[2]/img
+
+    #RETURN
+    #${nomProduit}    Get Text    //*[@id="searchAlgolia"]/div[1]/div[1]/div[3]/div[2]/div/article/a[2]
+    #Log    ${nomProduit}
+    #Should Contain     ${nomProduit}    ${nomProduitValide} 
+    #${prix}    Get Text    //*[@id="searchAlgolia"]/div[1]/div[1]/div[3]/div[2]/div/article/a[4]/span/span[1]/span[2]/span
+    #Log    ${prix}
+    #Should Contain     ${prix}   ${prixValide} 
+
+
+    #Click Element    //*[@id="searchAlgolia"]/div[1]/div[1]/div[3]/div[2]/div/article/a[2]/img
+    Click Element    //*[@id="articleQuantity"]
+    Press Keys  None  CTRL-A
+    Sleep    1
+    Input Text  None  6
+
+   Sleep    10
     
     Click Element    //*[@id="addToCart"]
 

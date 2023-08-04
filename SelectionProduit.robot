@@ -6,10 +6,11 @@ Resource  TestConnexionPassent.robot
 Resource  ExcelTool.robot
 Resource  CRE-001-N01-Creation-Profil-Success.robot
 Resource  REC-001-N01-Filtre-categories.robot
+Resource  REC-001-N01_SelectionProduit_verifArticleQuantitéValidation.robot
 Test Setup  OpenRaja
 
 *** Variables ***
-${name}  Ruban
+${name}  Pastille
 
 *** Test Case ***
 SelectProduct
@@ -18,13 +19,18 @@ SelectProduct
     Sleep    0.5
     Input Text         //html/body/div[5]/div[1]/section/div/div[1]/input  ${name}
     Sleep    .5
-
     Filtre categorie    3
     SelectAllAditionalCategorie  3
-
+    VerificationProduit  3
     Sleep    10
     Close All Browsers
     
+
+
+
+
+
+
 
 
 *** KeyWord ***

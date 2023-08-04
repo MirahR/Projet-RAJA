@@ -7,7 +7,10 @@ Resource  CRE-001-N01-Creation-Profil-Success.robot
 Test Setup  OpenRaja
 
 *** Variables ***
-
+${nom}
+${prenom}
+${mail}
+${mdp}
 
 *** Test Case ***
 CreationWrongFormat
@@ -15,10 +18,8 @@ CreationWrongFormat
 
 *** KeyWord ***
 CasPassent
-    Remplissage 1ere page
+    ${nom}  ${prenom}  ${mail}  ${mdp}  Remplissage 1ere page
     Remplissage 2eme page
-    Vérification cas passant
-
-    Log To Console  test
+    Vérification cas passant  ${nom}  ${prenom}  ${mail}  ${mdp}
 
     

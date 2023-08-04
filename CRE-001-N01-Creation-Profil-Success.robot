@@ -10,10 +10,6 @@ Library    FakerLibrary    locale=fr_FR
 Library    Dialogs
 
 *** Variables ***
-${nom}
-${prenom}
-${mail}
-${mdp}
 
 *** Keywords ***
 Remplissage 1ere page
@@ -43,6 +39,8 @@ Remplissage 1ere page
     Scroll to Element    //*[@id="nextStepBtn"]
     Click Button    //*[@id="nextStepBtn"]
 
+    [Return]  ${nom}  ${prenom}  ${mail}  ${mdp}
+
 Remplissage 2eme page
     #Données utilisateur   
     ${n_voie}    FakerLibrary.Address
@@ -65,6 +63,7 @@ Remplissage 2eme page
     Sleep    1
 
 Vérification cas passant
+    [Arguments]    ${nom}  ${prenom}  ${mail}  ${mdp}
     Log To Console    verif
     Page Should Contain Element  //*[@id="dropdown-block"]
     SaveNewConnexionData  ${nom}  ${prenom}  ${mail}  ${mdp}
