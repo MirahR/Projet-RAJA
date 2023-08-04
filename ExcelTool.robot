@@ -87,3 +87,16 @@ GetArticleCategorie
   Close Current Excel Document
 
   [return]  ${cat1}  ${cat2}  ${cat3}
+
+GetArticleNameAndPrice
+  [Arguments]  ${id}
+
+  Open Excel Document  ${excelFileName}  excelfile
+
+  ${name}  Read Excel Cell  ${id}   2  produit
+  ${price}  Read Excel Cell  ${id}  3  produit
+  
+  Close Current Excel Document
+
+  [return]  ${name}  ${price}
+    
