@@ -7,11 +7,11 @@ Library    XML
 Resource    TestConnexionPassent.robot
 Resource    CRE-001-N01-Creation-Profil-Success.robot
 Library     FakerLibrary    locale=fr_FR
-Test Setup    OpenRaja
 *** Variables ***
-*** Test Cases ***
 
-test de creation de profil avec des champs obligatoires vides
+
+*** Keywords ***
+testProfilChampsObligatoiresPage1
    Click Button    xpath=//*[@id="dropdown-account"]/button
    Click Button    xpath=//*[@id="redirectCreateAccount"]
    
@@ -63,6 +63,9 @@ test de creation de profil avec des champs obligatoires vides
     Log     ${messageErreurTelephone}   
     Should Contain    ${messageErreurTelephone}    Information obligatoire
 
+
+testProfilChampsObligatoiresPage2
+
     Remplissage 1ere page
 
     
@@ -96,5 +99,3 @@ test de creation de profil avec des champs obligatoires vides
       
       
    
-
-*** Keywords ***

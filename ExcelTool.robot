@@ -99,4 +99,16 @@ GetArticleNameAndPrice
   Close Current Excel Document
 
   [return]  ${name}  ${price}
+
+GetArticleNameAndSurname
+  [Arguments]  ${id}
+
+  Open Excel Document  ${excelFileName}  excelfile
+
+  ${name}  Read Excel Cell  ${id}     1  connexion
+  ${surname}  Read Excel Cell  ${id}  2  connexion
+  
+  Close Current Excel Document
+
+  [return]  ${name}  ${surname}
     
