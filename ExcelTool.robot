@@ -51,3 +51,52 @@ GetLoginPassword
   ${password}  Read Excel Cell  3  4  connexion
   Close Current Excel Document
   [return]  ${string}
+
+GetArticleData
+  [Arguments]  ${id}
+
+  Open Excel Document  ${excelFileName}  excelfile
+
+  ${bp}           Read Excel Cell  ${id}  7   produit
+  ${marque}       Read Excel Cell  ${id}  8   produit
+  ${matiere}      Read Excel Cell  ${id}  9   produit
+  ${long}         Read Excel Cell  ${id}  10  produit
+  ${larg}         Read Excel Cell  ${id}  11  produit
+  ${dam}          Read Excel Cell  ${id}  12  produit
+  ${color}        Read Excel Cell  ${id}  13  produit
+  ${newProduct}   Read Excel Cell  ${id}  14  produit
+  ${poid}         Read Excel Cell  ${id}  15  produit
+  ${typeFerm}     Read Excel Cell  ${id}  16  produit
+  ${epaisseur}    Read Excel Cell  ${id}  17  produit
+  ${alimentaire}  Read Excel Cell  ${id}  18  produit
+  ${cannelure}    Read Excel Cell  ${id}  19  produit
+
+  Close Current Excel Document
+
+  [return]  ${bp}  ${marque}  ${matiere}  ${long}  ${larg}  ${dam}  ${color}  ${newProduct}  ${poid}  ${typeFerm}  ${epaisseur}  ${alimentaire}  ${cannelure}
+
+GetArticleCategorie
+  [Arguments]  ${id}
+
+  Open Excel Document  ${excelFileName}  excelfile
+
+  ${cat1}  Read Excel Cell  ${id}  4   produit
+  ${cat2}  Read Excel Cell  ${id}  5   produit
+  ${cat3}  Read Excel Cell  ${id}  6   produit
+  
+  Close Current Excel Document
+
+  [return]  ${cat1}  ${cat2}  ${cat3}
+
+GetArticleNameAndPrice
+  [Arguments]  ${id}
+
+  Open Excel Document  ${excelFileName}  excelfile
+
+  ${name}  Read Excel Cell  ${id}   2  produit
+  ${price}  Read Excel Cell  ${id}  3  produit
+  
+  Close Current Excel Document
+
+  [return]  ${name}  ${price}
+    
