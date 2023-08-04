@@ -5,14 +5,24 @@ Library   XML
 Resource  TestConnexionPassent.robot
 Resource  ExcelTool.robot
 Resource  CRE-001-N01-Creation-Profil-Success.robot
+Resource  REC-001-N01-Filtre-categories.robot
 Test Setup  OpenRaja
 
 *** Variables ***
-${name}  Ruban vinyle de marquage blanc 3M 50 mm x 33 m
+${name}  Ruban
 
 *** Test Case ***
 SelectProduct
-    SelectAllAditionalCategorie  2
+
+    Click Element      //*[@id="algolia-loader"]
+    Sleep    0.5
+    Input Text         //html/body/div[5]/div[1]/section/div/div[1]/input  ${name}
+    Sleep    .5
+
+    Filtre categorie    3
+    SelectAllAditionalCategorie  3
+
+    Sleep    10
     Close All Browsers
     
 
@@ -20,11 +30,6 @@ SelectProduct
 *** KeyWord ***
 SelectAllAditionalCategorie
   [Arguments]  ${id}
-
-    Click Element      //*[@id="algolia-loader"]
-    Sleep    0.5
-    Input Text         //html/body/div[5]/div[1]/section/div/div[1]/input  ${name}
-    Sleep    .5
 
     #scroll button tous les filtres
     Scroll to Element  //*[@id="filters-layer-content"]/button

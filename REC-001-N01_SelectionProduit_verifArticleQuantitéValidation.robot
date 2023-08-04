@@ -12,13 +12,13 @@ Test Setup    OpenRaja
 
 
 ** Variables ***
-#${refProduitValide}  471BLA
-#${nomProduitValide}    Ruban vinyle de marquage blanc 3M 50 mm x 33 m
-#${prixValide}     58,30
+${refProduitValide}  471BLA
+${nomProduitValide}    Ruban vinyle de marquage blanc 3M 50 mm x 33 m
+${prixValide}     58,30
 
-${refProduitValide}  NEU3
-${nomProduitValide}    Sachet plastique transparent à fond carton 10 x 22 cm
-${prixValide}     16,15
+#${refProduitValide}  NEU3
+#${nomProduitValide}    Sachet plastique transparent à fond carton 10 x 22 cm
+#${prixValide}     16,15
 
 @{Ruban}    471BLA    Ruban vinyle de marquage blanc 3M 50 mm x 33 m    58,30
 

@@ -5,9 +5,15 @@ Library    RequestsLibrary
 Library    XML
 Resource    TestConnexionChampsManquants.robot
 Resource    TestConnexionPassent.robot
+Resource    ExcelTool.robot
 Library    FakerLibrary    locale=fr_FR
 Library    Dialogs
 
+*** Variables ***
+${nom}
+${prenom}
+${mail}
+${mdp}
 
 *** Keywords ***
 Remplissage 1ere page
@@ -53,12 +59,15 @@ Remplissage 2eme page
     Input Text    //*[@id="CompaniesCity"]    ${ville}
     Execute Manual Step    cliquer sur "Je ne suis pas un Robot"
     Click Button    //*[@id="submitAllForm"]
+    Sleep    1
     ${adresse_verif}    Run Keyword And Return Status    Element Should Be Visible    //*[@id="createUserSubmitWithDQE"]
     IF    ${adresse_verif}    Click Button    //*[@id="createUserSubmitWithDQE"]
-    Sleep    2
+    Sleep    1
 
 Vérification cas passant
+    Log To Console    verif
     Page Should Contain Element  //*[@id="dropdown-block"]
+    SaveNewConnexionData  ${nom}  ${prenom}  ${mail}  ${mdp}
     Sleep    5
     Close Browser
 
@@ -67,6 +76,6 @@ Scroll to Element
     ${horiz}    Get Horizontal Position    ${locator}
     ${vert}    Get Vertical Position    ${locator}
     Execute Javascript    window.scrollTo(${horiz}, ${vert})
-    Sleep    2
+    Sleep    0.5
 
 

@@ -9,8 +9,6 @@ Library    XML
 ${URL}    https://www.raja.fr/
 ${error_champ}    Information obligatoire
 
-
-
 *** Keywords ***
 Page Raja
     Open Browser    ${URL}    chrome
