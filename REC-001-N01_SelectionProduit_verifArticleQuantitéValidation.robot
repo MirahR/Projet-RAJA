@@ -15,7 +15,7 @@ Library    FakerLibrary    locale=fr_FR
 ${refProduitValide}  471BLA
 ${nomProduitValide}    Ruban vinyle de marquage blanc 3M 50 mm x 33 m
 ${prixValide}     58,30
-
+${quantite}    10
 #${refProduitValide}  NEU3
 #${nomProduitValide}    Sachet plastique transparent à fond carton 10 x 22 cm
 #${prixValide}     16,15
@@ -55,11 +55,9 @@ VerificationProduit
     #Click Element    //*[@id="searchAlgolia"]/div[1]/div[1]/div[3]/div[2]/div/article/a[2]/img
     Press Key   //*[@id="articleQuantity"]  \\1
     Press Key   //*[@id="articleQuantity"]  \\127
-    Input Text  //*[@id="articleQuantity"]  10
+    Input Text  //*[@id="articleQuantity"]  ${quantite}
 
-    Press Key    //*[@id="articleQuantity"]    \\1
-    Press Key    //*[@id="articleQuantity"]    \\127
-    Input Text    //*[@id="articleQuantity"]    10
+   
     
     Scroll Element Into View   //*[@id="addToCart"]
     Click Element    //*[@id="addToCart"]
@@ -71,13 +69,19 @@ VerificationProduit
     ${nomProduit}    Get Text    //html/body/div[11]/div[1]/div[1]/article/div[1]/div[1]/div[1]/div/p
     Log     ${nomProduit}
     Should Contain    ${nomProduit}    ${nomProduitValide}
+
+
     
-    ${quantite}    Get Text  //html/body/div[11]/div[1]/div[1]/article/div[1]/div[1]/div[1]/div/div/div/div/fieldset/
-    Log    ${quantite}
+
+
+Continuer achat
+  Click Element     //*[@id="continuer-achat"]  
+
+Confirmation Panier
+  Click Element     //*[@id="open-cart-confirmation"]
 
  
-
-        
+ 
     
     
 

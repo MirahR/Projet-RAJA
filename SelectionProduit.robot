@@ -22,6 +22,7 @@ SelectProduct
     Filtre categorie    3
     SelectAllAditionalCategorie  3
     VerificationProduit  3
+    Continuer achat
     Sleep    10
     Close All Browsers
     
