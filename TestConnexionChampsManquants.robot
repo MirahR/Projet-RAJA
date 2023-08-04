@@ -23,3 +23,4 @@ Message d'erreur
     ${msg_error2}    Get Text    //fieldset/div[2]/label
     Should Be Equal    ${error_champ}    ${msg_error1}
     Should Be Equal    ${error_champ}    ${msg_error2}
+    Close Browser

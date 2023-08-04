@@ -53,18 +53,27 @@ VerificationProduit
 
 
     #Click Element    //*[@id="searchAlgolia"]/div[1]/div[1]/div[3]/div[2]/div/article/a[2]/img
-    Click Element    //*[@id="articleQuantity"]
-    Press Keys  None  CTRL-A
-    Sleep    1
-    Input Text  None  6
+    Press Key   //*[@id="articleQuantity"]  \\1
+    Press Key   //*[@id="articleQuantity"]  \\127
+    Input Text  //*[@id="articleQuantity"]  10
 
-   Sleep    10
+    Press Key    //*[@id="articleQuantity"]    \\1
+    Press Key    //*[@id="articleQuantity"]    \\127
+    Input Text    //*[@id="articleQuantity"]    10
     
+    Scroll Element Into View   //*[@id="addToCart"]
     Click Element    //*[@id="addToCart"]
 
-
-    #${messageConfirmation}       Get Text    /html/body/div[11]/div[1]/h2
-    #Log    ${messageConfirmation}
+    Sleep    1
+    ${messageConfirmation}       Get Text    //html/body/div[11]/div[1]/h2
+    Log    ${messageConfirmation}
+    Should Contain    ${messageConfirmation}    Le produit suivant a bien été ajouté
+    ${nomProduit}    Get Text    //html/body/div[11]/div[1]/div[1]/article/div[1]/div[1]/div[1]/div/p
+    Log     ${nomProduit}
+    Should Contain    ${nomProduit}    ${nomProduitValide}
+    
+    ${quantite}    Get Text  //html/body/div[11]/div[1]/div[1]/article/div[1]/div[1]/div[1]/div/div/div/div/fieldset/
+    Log    ${quantite}
 
  
 
